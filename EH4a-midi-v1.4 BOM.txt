@@ -1,0 +1,63 @@
+Part    Value   Device               Package            Description
+C1      100n    C-EUC0805            C0805
+C2      470u    CPOL-EUE3.5-8        E3,5-8
+C3      100n    C-EUC0805            C0805
+C4      100n    C-EUC0805            C0805
+C5      100n    C-EUC0805            C0805
+C6      100p    C-EUC0805            C0805
+C7      220u    CPOL-EUE2.5-7        E2,5-7
+C100    100n    C-EUC0805            C0805
+C101    100n    C-EUC0805            C0805
+C102    100n    C-EUC0805            C0805
+C103    100n    C-EUC0805            C0805
+D1      1N5819  DIODESOD-123         SOD-123            Can be any other Shottky.
+DOWN            PINHD-1X4            1X04               PIN HEADER
+F1      4A      2920L700SL           2920L              SMD1808 fuse socket with fuse 4A
+HA              LED3MM               LED3MM             LED 5mm Orange
+IC1     ESP8266-ESP-07               ESP12              ESP8266 Wifi module
+IC2     LD117A  LD117AS12TR          SOT223
+IC3     PCF8574TPCF8574T             SO16W
+IC4     PCA9306 IC2_LEVEL_TRANSLATER MSOP08
+OK1     MOC3041 IL420                DIL06
+OK2     MOC3041 IL420                DIL06
+OK3     MOC3041 IL420                DIL06
+OK4     MOC3041 IL420                DIL06
+OK5     TLP283-4TLP283-4             MINI-FLAT-16
+POWER           LED3MM               LED3MM             LED 5mm Green
+R1      820     R-EU_M0805           M0805
+R2      10k     R-EU_M0805           M0805
+R3      10k     R-EU_M0805           M0805
+R4      3k3     R-EU_M0805           M0805
+R5      820     R-EU_M0805           M0805
+R6      330     R-EU_M0805           M0805
+R7      330     R-EU_M0805           M0805
+R8      330     R-EU_M0805           M0805
+R9      330     R-EU_M0805           M0805
+R10     330     R-EU_M0805           M0805
+R11     330     R-EU_M0805           M0805
+R12     330     R-EU_M0805           M0805
+R13     330     R-EU_M0805           M0805
+R14     10k     R-EU_R0805           R0805
+R15     10k     R-EU_R0805           R0805
+R16     200k    R-EU_R0805           R0805
+R17     S10K300 S10K300              S10K300            VARISTOR
+R18     330     R-EU_R1210           R1210
+R19     330     R-EU_R1210           R1210
+R20     360     R-EU_R1210           R1210
+R21     330     R-EU_R1210           R1210
+R22     360     R-EU_R1210           R1210
+R23     330     R-EU_R1210           R1210
+R24     360     R-EU_R1210           R1210
+R25     360     R-EU_R1210           R1210
+S1      Prog    DTSM-3               DTSM-3				SMD mountable tact switch
+T100    BT136S  ACT108WDPAK          SOT428
+T101    BT136S  ACT108WDPAK          SOT428
+T102    BT136S  ACT108WDPAK          SOT428
+T103    BT136S  ACT108WDPAK          SOT428
+U1      HLK-05PMHLK-PM01_HLK-PM01    HLK-PM01_HLK-PM01  HLK-PM05
+UART            JP2E                 JP2                JUMPER
+UP              PINHD-1X4            1X04               PIN HEADER
+WIFI            LED3MM               LED3MM             LED 5mm Blue
+X1      MKDSN1,5MKDSN1,5/5-5,08      MKDSN1,5/5-5,08
+X2      230V AC MKDSN1,5/2-5,08      MKDSN1,5/2-5,08
+X3      MKDSN1,5MKDSN1,5/4-5,08      MKDSN1,5/4-5,08
