@@ -1,0 +1,272 @@
+######################################
+#                                    #
+# Proposal of code for light driver  #
+#         Jarek.P 11-2021            #
+#                                    #
+######################################
+
+substitutions:
+  Out4_time: "30s" 
+
+esphome:
+  name: eh-4a_midi_test
+  platform: ESP8266
+  board: esp01_1m
+  comment: Simple light driver EH-4a Midi
+  on_loop: #in this loop wifi connection is checked
+    if:
+        condition:
+            wifi.connected:
+        then:
+            lambda: !lambda |-
+              if not (id(wifi_led).state) {
+                
+              } else {
+                id(wifi_led).turn_on();
+              }
+        else:
+            lambda: !lambda |-
+              if (id(wifi_led).state) {
+                id(wifi_led).turn_on();
+              } 
+
+wifi:
+  ssid: "Your_WIFI_SSID"
+  password: "Your_wifi_key"
+  manual_ip: #this section can be removed for enabling DHCP
+    static_ip: 10.1.1.44
+    gateway: 10.1.1.1
+    subnet: 255.255.255.0
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Eh-4A Midi Test Fallback Hotspot"
+    password: "secret_password"
+
+captive_portal:
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  password: "secret_password"
+
+ota:
+  password: "secret_password"
+
+i2c:
+  sda: 5
+  scl: 4
+
+pcf8574:
+  - id: 'pcf'
+    address: 32 
+    pcf8575: False    
+
+text_sensor: #uptime outputhor humans
+  - platform: template
+    name: EH-4a Uptime 
+    id: uptime_human
+    icon: mdi:clock-start
+
+sensor: #measure of uptime (accuracy: minute)
+  - platform: uptime
+    name: Uptime Sensor
+    id: uptime_sensor
+    on_raw_value:
+      then:
+        - text_sensor.template.publish:
+            id: uptime_human
+            state: !lambda |-
+              int seconds = round(id(uptime_sensor).raw_state);
+              int days = seconds / (24 * 3600);
+              seconds = seconds % (24 * 3600);
+              int hours = seconds / 3600;
+              seconds = seconds % 3600;
+              int minutes = seconds / 60;
+              seconds = seconds % 60;
+              return (
+                (days ? String(days) + "d " : "") +
+                (hours ? String(hours) + "h " : "") +
+                (minutes ? String(minutes) + "m " : "")
+
+
+binary_sensor: #status of connection to HA server
+  - platform: status
+    id: api_status
+    internal: yes
+    on_state:
+      then:
+        - switch.turn_on: status_led
+    on_release:
+      then:
+        - switch.turn_off: status_led
+
+########################
+##       INPUTS       ##
+########################
+
+  - platform: gpio 
+    name: "EH4a - In1"
+    id: In1
+    pin:
+      pcf8574: pcf
+      number: 7
+      mode: INPUT
+      inverted: True 
+    filters:
+      - delayed_on_off: 50ms      
+    on_click:
+    - min_length: 50ms
+      max_length: 1000ms
+      then:
+        - switch.toggle: Out_1
+    - min_length: 1000ms
+      max_length: 5000ms
+      then:
+        - switch.turn_off: Out_1      
+        - switch.turn_off: Out_2      
+        - switch.turn_off: Out_3      
+        - switch.turn_off: Out_4      
+
+  - platform: gpio 
+    name: "EH4a - In2"
+    id: In2
+    pin:
+      pcf8574: pcf
+      number: 6
+      mode: INPUT
+      inverted: True 
+    filters:
+      - delayed_on_off: 50ms      
+    on_click:
+    - min_length: 50ms
+      max_length: 1000ms
+      then:
+        - switch.toggle: Out_2
+    - min_length: 1000ms
+      max_length: 5000ms
+      then:
+        - switch.turn_off: Out_1      
+        - switch.turn_off: Out_2      
+        - switch.turn_off: Out_3      
+        - switch.turn_off: Out_4      
+
+  - platform: gpio 
+    name: "EH4a - In3"
+    id: In3
+    pin:
+      pcf8574: pcf
+      number: 5
+      mode: INPUT
+      inverted: True 
+    filters:
+      - delayed_on_off: 50ms      
+    on_click:
+    - min_length: 50ms
+      max_length: 1000ms
+      then:
+        - switch.toggle: Out_3
+    - min_length: 1000ms
+      max_length: 5000ms
+      then:
+        - switch.turn_off: Out_1      
+        - switch.turn_off: Out_2      
+        - switch.turn_off: Out_3      
+        - switch.turn_off: Out_4      
+
+  - platform: gpio 
+    name: "EH4a - In4"
+    id: In4
+    pin:
+      pcf8574: pcf
+      number: 4
+      mode: INPUT
+      inverted: True 
+    filters:
+      - delayed_on_off: 50ms      
+    on_click:
+    - min_length: 50ms
+      max_length: 1000ms
+      then:
+        - if:
+            condition:
+                - switch.is_on: Out_4
+            then:
+                - switch.turn_off: Out_4
+                - script.stop: timer_Out_4
+            else:
+                - script.execute: timer_Out_4
+    - min_length: 1000ms
+      max_length: 5000ms
+      then:
+        - script.stop: timer_Out_4
+        - switch.turn_on: Out_4      
+#end of inputs
+
+switch:
+  - platform: gpio
+    pin: 12
+    inverted: yes
+    id: wifi_led
+    restore_mode: ALWAYS_OFF
+    internal: yes
+
+  - platform: gpio
+    pin: 14
+    inverted: yes
+    id: status_led
+    restore_mode: ALWAYS_OFF
+    internal: yes
+
+########################
+##       OUTPUTS      ##
+########################
+
+  - platform: gpio 
+    name: "EH4 test Out-1"
+    id: Out_1
+    restore_mode: RESTORE_DEFAULT_OFF
+    pin:
+      pcf8574: pcf
+      number: 3
+      mode: OUTPUT
+      inverted: True 
+                  
+  - platform: gpio 
+    name: "EH4 test Out-2"
+    id: Out_2
+    restore_mode: RESTORE_DEFAULT_OFF
+    pin:
+      pcf8574: pcf
+      number: 2
+      mode: OUTPUT
+      inverted: True 
+
+  - platform: gpio 
+    name: "EH4 test Out-3"
+    id: Out_3
+    restore_mode: RESTORE_DEFAULT_OFF
+    pin:
+      pcf8574: pcf
+      number: 1
+      mode: OUTPUT
+      inverted: True 
+
+  - platform: gpio 
+    name: "EH4 test Out-4"
+    id: Out_4
+    restore_mode: RESTORE_DEFAULT_OFF
+    pin:
+      pcf8574: pcf
+      number: 0
+      mode: OUTPUT
+      inverted: True 
+
+script:
+  - id: timer_Out_4
+    then:
+      - switch.turn_on: Out_4
+      - delay: $Out4_time
+      - switch.turn_off: Out_4
