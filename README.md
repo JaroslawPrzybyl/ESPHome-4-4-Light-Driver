@@ -35,4 +35,19 @@ Stickers should be printed on self-adhesive paper.
 
 ## Software
 
-From ESP-Home perspective it is really simple device, shouldn't be any problems with code. Basic proposal is added into the files, each input controls its corresponding output, whre "short" click on the button just switch on or off the light, "long" click (press and hold more than 1s) switches off all outputs (really useful option for fast switching off the lights in the room). Clicks shorter than 50ms are ignored (debouncing), longer than 3s are also ignored (could be additionally reported as a short circuit on the line). Additionally line 4 contains a timer:   
+From ESP-Home perspective it is really simple device, shouldn't be any problems with code. The only importan thing which should be pointed out is that when you use ESP-07, its integration in ESPHome contains a bug, which is not corrected from the years (was reported many times as I know). So in declaration of board type, instead of esp_07, has to be used esp01_1m and with this workaround everything works fine.  
+Basic proposal of code is added into the files, each input controls its corresponding output, whre "short" click on the button just switch on or off the light, "long" click (press and hold more than 1s) switches off all outputs (really useful option for fast switching off the lights in the room). Clicks shorter than 50ms are ignored (debouncing), longer than 5s are also ignored (could be additionally reported as a short circuit on the line). Only line 4 works a bit different, here is implemented a timer: short click switches the light connected to Out4 on for 30 seconds (time value is set as at the top of code), after this time light will be switched off. Each time it can be switched off manually by click the button again. Long click switches it on permanently (until switching off by pressing button). 
+
+
+## License
+
+Shield: [![CC BY-NC-SA 4.0][cc-by-nc-sa-shield]][cc-by-nc-sa]
+
+This work is licensed under a
+[Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License][cc-by-nc-sa].
+
+[![CC BY-NC-SA 4.0][cc-by-nc-sa-image]][cc-by-nc-sa]
+
+[cc-by-nc-sa]: http://creativecommons.org/licenses/by-nc-sa/4.0/
+[cc-by-nc-sa-image]: https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png
+[cc-by-nc-sa-shield]: https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg
