@@ -1,6 +1,7 @@
 # ESPHome-4-4-Light-Driver
 **Small light driver with 4 AC SSR outputs and 4 optoisolated inputs for switches.**
 
+![EH-4A Midi](resources/EH-4AMidi.jpg)
 
 ## Parts and components
 Base of this device is an ESP-07 module, choosen due to possibility to connect external antenna. If it is not needed, can be used also ESP12 or any other with the same footprint.
