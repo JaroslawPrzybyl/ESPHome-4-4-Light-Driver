@@ -70,7 +70,7 @@ text_sensor: #uptime outputhor humans
     id: uptime_human
     icon: mdi:clock-start
 
-sensor: #measure of uptime (accuracy: minute)
+sensor: #calculating of uptime to human readable format
   - platform: uptime
     name: Uptime Sensor
     id: uptime_sensor
@@ -90,6 +90,7 @@ sensor: #measure of uptime (accuracy: minute)
                 (days ? String(days) + "d " : "") +
                 (hours ? String(hours) + "h " : "") +
                 (minutes ? String(minutes) + "m " : "")
+              ).c_str();
 
 
 binary_sensor: #status of connection to HA server
@@ -233,7 +234,7 @@ switch:
       number: 3
       mode: OUTPUT
       inverted: True 
-                  
+
   - platform: gpio 
     name: "EH4 test Out-2"
     id: Out_2
