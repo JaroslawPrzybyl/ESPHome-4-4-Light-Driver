@@ -43,10 +43,7 @@ From ESP-Home perspective it is really simple device, shouldn't be any problems 
 Basic proposal of code is added into the files, each input controls its corresponding output, where "short" click on the button just switch on or off the output, "long" click (press and hold more than 1s) switches off all outputs (really useful option for fast switching off the lights in the room). Clicks shorter than 50ms are ignored (debouncing), longer than 5s are also ignored (could be additionally reported as a short circuit on the line, it is not included in this code, but can be simply done).   
 Only line 4 works a bit different, here is implemented a timer: short click switches on Out4  for 30 seconds (time value is set as at the top of code), after this time output  will be switched off. Each time it can be switched off manually by click the button again. And long click here works differently: it switches on the output permanently (until switching off by pressing button). 
 
-
-[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](jarekprzybyl@gmail.com)
-
-## License
+[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=NAE4G3REDCS36)
 
 Shield: [![CC BY-NC-SA 4.0][cc-by-nc-sa-shield]][cc-by-nc-sa]
 
