@@ -231,7 +231,7 @@ switch:
     restore_mode: RESTORE_DEFAULT_OFF
     pin:
       pcf8574: pcf
-      number: 3
+      number: 0
       mode: OUTPUT
       inverted: True 
 
@@ -241,7 +241,7 @@ switch:
     restore_mode: RESTORE_DEFAULT_OFF
     pin:
       pcf8574: pcf
-      number: 2
+      number: 1
       mode: OUTPUT
       inverted: True 
 
@@ -251,7 +251,7 @@ switch:
     restore_mode: RESTORE_DEFAULT_OFF
     pin:
       pcf8574: pcf
-      number: 1
+      number: 2
       mode: OUTPUT
       inverted: True 
 
@@ -261,7 +261,7 @@ switch:
     restore_mode: RESTORE_DEFAULT_OFF
     pin:
       pcf8574: pcf
-      number: 0
+      number: 3
       mode: OUTPUT
       inverted: True 
 
