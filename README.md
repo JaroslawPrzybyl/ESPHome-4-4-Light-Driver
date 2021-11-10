@@ -44,6 +44,8 @@ Basic proposal of code is added into the files, each input controls its correspo
 Only line 4 works a bit different, here is implemented a timer: short click switches on Out4  for 30 seconds (time value is set as at the top of code), after this time output  will be switched off. Each time it can be switched off manually by click the button again. And long click here works differently: it switches on the output permanently (until switching off by pressing button). 
 
 
+[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](jarekprzybyl@gmail.com)
+
 ## License
 
 Shield: [![CC BY-NC-SA 4.0][cc-by-nc-sa-shield]][cc-by-nc-sa]
