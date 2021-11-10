@@ -1,5 +1,5 @@
 # ESPHome-4-4-Light-Driver
-**Small light driver with 4 AC SSR outputs and 4 optoisolated inputs, designed for Home Assistant.**
+**Small light controller with 4 AC SSR outputs and 4 optoisolated inputs, designed for Home Assistant.**
 
 ![EH-4A Midi](resources/EH-4AMidi.jpg)
 ![Upper board](resources/Top_PCB.jpg)
