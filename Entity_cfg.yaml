@@ -1,0 +1,33 @@
+type: horizontal-stack
+cards:
+  - type: button
+    tap_action:
+      action: toggle
+    entity: switch.eh4_test_out_1
+    icon: hass:lightbulb-on-outline
+    name: Out 1
+    show_state: true
+  - type: button
+    tap_action:
+      action: toggle
+    entity: switch.eh4_test_out_2
+    icon: hass:lightbulb-on-outline
+    name: Out 2
+    show_state: true
+  - type: button
+    tap_action:
+      action: toggle
+    entity: switch.eh4_test_out_3
+    icon: hass:lightbulb-on-outline
+    show_state: true
+    name: Out 3
+  - type: button
+    tap_action:
+      action: toggle
+    entity: switch.eh4_test_out_4
+    show_state: true
+    icon: hass:lightbulb-on-outline
+    name: Out 4
+  - type: glance
+    entities:
+      - entity: sensor.eh_4a_uptime
